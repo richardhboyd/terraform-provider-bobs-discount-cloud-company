@@ -1,31 +1,31 @@
 terraform {
   required_providers {
-    hashicups = {
-      source = "hashicorp.com/edu/hashicups"
+    bobsdiscountcloudco = {
+      source = "hashicorp.com/edu/bobsdiscountcloudco"
     }
   }
 }
 
-provider "hashicups" {
+provider "bobsdiscountcloudco" {
   host     = "https://api.us-east-1.whybobs.com"
   api_key = "SOME_API_KEY"
 }
 
-data "hashicups_databases" "example" {}
+data "bobsdiscountcloudco_databases" "example" {}
 
-resource "hashicups_database" "example" {
+resource "bobsdiscountcloudco_database" "example" {
   name = "steven"
   lifecycle {
     action_trigger {
       events    = [after_create]
-      actions   = [action.hashicups_population_action.message]
+      actions   = [action.bobsdiscountcloudco_population_action.message]
     }
   }
 }
 
-action "hashicups_population_action" "message" {
+action "bobsdiscountcloudco_population_action" "message" {
   config {
-    id = resource.hashicups_database.example.id
+    id = resource.bobsdiscountcloudco_database.example.id
     items = [{
       key = "richard"
       value = "Boyd"
@@ -33,5 +33,5 @@ action "hashicups_population_action" "message" {
   }
 }
 output "edu_databases" {
-  value = resource.hashicups_database.example.id
+  value = resource.bobsdiscountcloudco_database.example.id
 }
